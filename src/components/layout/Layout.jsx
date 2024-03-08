@@ -1,7 +1,18 @@
 import React from "react";
+import Navbar from "../navbar/Navbar";
+import Footer from "../footer/Footer";
 
-const Layout = () => {
-  return <div>Layout</div>;
+const Layout = ({ children }) => {
+  return (
+    <div>
+      {/* Navbar */}
+      <Navbar />
+      {/* Main Content */}
+      <div className="content">{children}</div>
+      {/* Footer */}
+      <Footer />
+    </div>
+  );
 };
 
 export default Layout;
