@@ -1,0 +1,16 @@
+.all-blogs {
+  margin: 2rem auto;
+}
+
+.all-blogs .title {
+  margin: 2rem auto;
+  font-size: 16px;
+  text-decoration: underline;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .all-blogs .title {
+    font-size: 14px;
+  }
+}
