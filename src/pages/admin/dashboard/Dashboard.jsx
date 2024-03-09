@@ -1,6 +1,8 @@
 import React from "react";
 import "./Dashboard.css";
 import Navbar from "../../../components/navbar/Navbar";
+import { Link } from "react-router-dom";
+import CreateBlog from "../createBlog/CreateBlog";
 
 const Dashboard = () => {
   return (
@@ -31,7 +33,9 @@ const Dashboard = () => {
             </div>
             {/* Buttons */}
             <div className="buttons">
-              <button>Create Blog</button>
+              <Link to={"/createblog"}>
+                <button>Create Blog</button>
+              </Link>
               <button>Logout</button>
             </div>
           </div>
