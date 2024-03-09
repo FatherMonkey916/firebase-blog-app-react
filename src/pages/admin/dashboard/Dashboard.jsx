@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Dashboard.css";
 import Navbar from "../../../components/navbar/Navbar";
 import { Link, useNavigate } from "react-router-dom";
+import { myContext } from "../../../context/data/myContext";
 
 const Dashboard = () => {
+  const context = useContext(myContext);
+  const { getAllBlog } = context;
+  console.log(getAllBlog);
+
   const navigate = useNavigate();
 
   //* Logout Function
@@ -63,27 +68,37 @@ const Dashboard = () => {
                   <th className="custom-th">Action</th>
                 </tr>
               </thead>
+              {/* tbody */}
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>
-                    <div className="thumbnail">
-                      <img
-                        src="https://www.invajy.com/wp-content/uploads/2022/11/Into-the-Wild-Quotes-1-600x441.jpeg"
-                        alt="Into the wild movie - quote"
-                      />
-                    </div>
-                  </td>
-                  <td>Christopher McCandless</td>
-                  <td>
-                    “People just need to change the way they look at things.” ~
-                    Christopher McCandless, “Into The Wild”
-                  </td>
-                  <td>Mar 09, 2024</td>
-                  <td>
-                    <button>Delete</button>
-                  </td>
-                </tr>
+                {getAllBlog.length > 0 ? (
+                  getAllBlog.map((item, index) => {
+                    console.log(item);
+                    const { thumbnail, date, title, description } = item;
+                    return (
+                      <tr key={index}>
+                        <td>{index + 1}.</td>
+                        <td>
+                          <div className="thumbnail">
+                            <img
+                              src={thumbnail}
+                              alt="Into the wild movie - quote"
+                            />
+                          </div>
+                        </td>
+                        <td>{title}</td>
+                        <td>{description}</td>
+                        <td>{date}</td>
+                        <td>
+                          <button>Delete</button>
+                        </td>
+                      </tr>
+                    );
+                  })
+                ) : (
+                  <tr>
+                    <td colSpan="6">Not Found🙁</td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
