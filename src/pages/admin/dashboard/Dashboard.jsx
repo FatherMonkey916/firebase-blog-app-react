@@ -1,10 +1,17 @@
 import React from "react";
 import "./Dashboard.css";
 import Navbar from "../../../components/navbar/Navbar";
-import { Link } from "react-router-dom";
-import CreateBlog from "../createBlog/CreateBlog";
+import { Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
+  //* Logout Function
+  const logout = () => {
+    localStorage.clear("admin");
+    navigate("/");
+  };
+
   return (
     <>
       <Navbar />
@@ -36,7 +43,7 @@ const Dashboard = () => {
               <Link to={"/createblog"}>
                 <button>Create Blog</button>
               </Link>
-              <button>Logout</button>
+              <button onClick={logout}>Logout</button>
             </div>
           </div>
         </div>

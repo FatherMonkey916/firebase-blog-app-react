@@ -62,3 +62,20 @@ button[type="submit"]:hover {
     margin: auto 5px;
   }
 }
+
+/* Credentials */
+.credential {
+  margin-top: 20px;
+}
+
+.credential h4 {
+  font-size: 17px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.user-credential p {
+  margin: 5px 0;
+  font-size: 14px;
+  line-height: 16px;
+}
