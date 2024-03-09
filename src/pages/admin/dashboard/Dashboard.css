@@ -1,0 +1,147 @@
+.user-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 5px;
+  border: 2px solid #e7e5e5;
+}
+
+.user-profile {
+  width: 150px;
+  height: 150px;
+  background-color: #e7e5e5;
+  border-radius: 50%;
+  border: 5px solid #e7e5e5;
+}
+
+.user-profile img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.right {
+  padding-left: 20px;
+}
+
+.user-info {
+  margin-bottom: 20px;
+}
+
+.user-info h2 {
+  margin-bottom: 5px;
+}
+
+.buttons button {
+  margin-right: 10px;
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #000;
+  border: 2px solid #e7e5e5;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buttons button:hover {
+  background-color: #e7e5e5;
+}
+
+@media (max-width: 400px) {
+  .user-info {
+    margin-top: 15px;
+    text-align: center;
+  }
+}
+
+/* Table */
+.container {
+  margin: 2rem 2rem;
+  border-left: 1px solid #e7e5e5;
+  border-right: 1px solid #e7e5e5;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+  min-width: 150px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #000;
+  text-align: center;
+}
+
+.custom-th {
+  width: 50px;
+}
+
+th {
+  font-size: 16px;
+}
+
+td {
+  border: 1px solid #e7e5e5;
+}
+
+thead th {
+  background-color: #e7e5e5;
+}
+
+.thumbnail img {
+  width: 100px;
+  height: auto;
+  border-radius: 5px;
+}
+
+td:nth-child(3) {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+td:nth-child(4) {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+td button {
+  padding: 5px 10px;
+  background-color: transparent;
+  color: #000;
+  border: 2px solid #e7e5e5;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+td button:hover {
+  background-color: #e7e5e5;
+}
+
+@media (max-width: 768px) {
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .container {
+    margin: 1rem 0.5rem;
+  }
+
+  th,
+  td {
+    font-size: 14px;
+  }
+}
