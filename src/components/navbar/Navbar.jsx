@@ -6,6 +6,10 @@ import UserIcon from "../../assets/user-icon.png";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  //* Admin
+  const admin = localStorage.getItem("admin");
+
   return (
     <div className="navbar">
       {/* Logo */}
@@ -29,14 +33,22 @@ const Navbar = () => {
           <Link to={"/allblogs"}>Blogs</Link>
         </li>
         <li>
-          <Link to={"/adminlogin"}>Login</Link>
+          {admin ? null : (
+            <li>
+              <Link to={"/adminlogin"}>Login</Link>
+            </li>
+          )}
         </li>
         <li>
-          <Link to={"/dashboard"}>
-            <div className="profile-pic">
-              <img src={UserIcon} alt="" />
-            </div>
-          </Link>
+          {admin ? (
+            <Link to={"/dashboard"}>
+              <div className="profile-pic">
+                <img src={UserIcon} alt="" />
+              </div>
+            </Link>
+          ) : (
+            ""
+          )}
         </li>
       </ul>
     </div>
