@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import "./CreateBlog.css";
 import { IoArrowBackOutline } from "react-icons/io5";
-
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoMdImages } from "react-icons/io";
+import { Timestamp, addDoc, collection } from "firebase/firestore";
+import toast from "react-hot-toast";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { fireDb, storage } from "../../../firebase/FirebaseConfig";
 
 const CreateBlog = () => {
   const [thumbnailPreview, setThumbnailPreview] = useState("");
@@ -18,6 +21,60 @@ const CreateBlog = () => {
       reader.readAsDataURL(file);
     }
   };
+
+  const navigate = useNavigate();
+
+  // Create Blog
+  const [blogs, setBlogs] = useState({
+    title: "",
+    description: "",
+    time: Timestamp.now(),
+  });
+
+  // Add Post
+  const addPost = async () => {
+    if (
+      blogs.title === "" ||
+      blogs.description === "" ||
+      blogs.thumbnail === ""
+    ) {
+      toast.error("Please Fill All Fields");
+    }
+    uploadImage();
+  };
+
+  // Upload Image
+  const uploadImage = async () => {
+    if (!thumbnailPreview) {
+      toast.error("Please upload a thumbnail image");
+      return;
+    }
+
+    const imageRef = ref(storage, `blogimage/${blogs.title}.jpg`);
+    uploadBytes(imageRef, blogs.thumbnail).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        const productRef = collection(fireDb, "blogPost");
+        try {
+          addDoc(productRef, {
+            ...blogs,
+            thumbnail: url,
+            time: Timestamp.now(),
+            date: new Date().toLocaleString("en-US", {
+              month: "short",
+              day: "2-digit",
+              year: "numeric",
+            }),
+          });
+          navigate("/dashboard");
+          toast.success("Post Added Successfully");
+        } catch (error) {
+          toast.error(error);
+          console.log(error);
+        }
+      });
+    });
+  };
+
   return (
     <div className="create-blog">
       <div className="create-blog-container">
@@ -41,6 +98,7 @@ const CreateBlog = () => {
             Upload Thumbnail <IoMdImages className="custom-icon" size={20} />
             <input
               type="file"
+              name="thumbnail"
               className="thumbnail-input"
               onChange={handleFileChange}
             />
@@ -49,13 +107,21 @@ const CreateBlog = () => {
             type="text"
             className="title-input"
             placeholder="Enter Your Title"
+            value={blogs.title}
+            onChange={(e) => setBlogs({ ...blogs, title: e.target.value })}
           />
           <textarea
             className="description-input"
             rows="6"
             placeholder="Enter Your Description"
+            value={blogs.description}
+            onChange={(e) =>
+              setBlogs({ ...blogs, description: e.target.value })
+            }
           />
-          <button className="submit-button">Create Blog</button>
+          <button onClick={addPost} className="submit-button">
+            Create Blog
+          </button>
         </div>
       </div>
     </div>
