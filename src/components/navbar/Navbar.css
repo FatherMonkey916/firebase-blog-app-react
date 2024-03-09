@@ -52,8 +52,9 @@
 }
 
 .navbar ul li a:not(.active):hover {
-  background-color: #ccc;
+  background-color: #e7e5e5;
 }
+
 
 .navbar .menu {
   display: none;
