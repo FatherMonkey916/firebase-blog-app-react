@@ -6,7 +6,7 @@ import { myContext } from "../../../context/data/myContext";
 
 const Dashboard = () => {
   const context = useContext(myContext);
-  const { getAllBlog } = context;
+  const { getAllBlog, deleteBlogs } = context;
   console.log(getAllBlog);
 
   const navigate = useNavigate();
@@ -73,7 +73,7 @@ const Dashboard = () => {
                 {getAllBlog.length > 0 ? (
                   getAllBlog.map((item, index) => {
                     console.log(item);
-                    const { thumbnail, date, title, description } = item;
+                    const { thumbnail, date, title, description, id } = item;
                     return (
                       <tr key={index}>
                         <td>{index + 1}.</td>
@@ -88,7 +88,9 @@ const Dashboard = () => {
                         <td>{description}</td>
                         <td>{date}</td>
                         <td>
-                          <button>Delete</button>
+                          <button onClick={() => deleteBlogs(id)}>
+                            Delete
+                          </button>
                         </td>
                       </tr>
                     );

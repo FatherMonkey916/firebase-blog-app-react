@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { myContext, MyContextProvider } from "./myContext";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { myContext } from "./myContext";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import { fireDb } from "../../firebase/FirebaseConfig";
+import toast from "react-hot-toast";
 
 const MyState = (props) => {
   // loading state
@@ -35,12 +43,24 @@ const MyState = (props) => {
     getAllBlogs();
   }, []);
 
+  // Blog Delete Function
+  const deleteBlogs = async (id) => {
+    try {
+      await deleteDoc(doc(fireDb, "blogPost", id));
+      getAllBlogs();
+      toast.success("Blog deleted successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <myContext.Provider
       value={{
         loading,
         setLoading,
         getAllBlog,
+        deleteBlogs,
       }}
     >
       {props.children}
