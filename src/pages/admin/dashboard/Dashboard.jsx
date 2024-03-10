@@ -97,7 +97,11 @@ const Dashboard = () => {
                   })
                 ) : (
                   <tr>
-                    <td colSpan="6">Not Found🙁</td>
+                    <td colSpan="6">
+                      Empty!🙁
+                      <br />
+                      <span>Add Blog Using "Create Blog" Button</span>
+                    </td>
                   </tr>
                 )}
               </tbody>

@@ -59,7 +59,7 @@ const AllBlogs = () => {
               </>
             ) : (
               <>
-                <h1>Not Found 🙁</h1>
+                <h2>No Blogs to Show!🙁</h2>
               </>
             )}
           </div>

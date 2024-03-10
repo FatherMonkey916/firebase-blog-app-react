@@ -47,6 +47,10 @@
   background-color: #e7e5e5;
 }
 
+span {
+  font-size: 14px;
+}
+
 @media (max-width: 400px) {
   .user-info {
     margin-top: 15px;
