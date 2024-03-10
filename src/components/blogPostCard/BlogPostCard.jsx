@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const BlogPostCard = () => {
   const context = useContext(myContext);
-  const { loading, getAllBlog } = context;
+  const { getAllBlog } = context;
   // console.log(getAllBlog);
 
   const navigate = useNavigate();
@@ -20,19 +20,20 @@ const BlogPostCard = () => {
               console.log(item);
               const { thumbnail, date, title, description, id } = item;
               return (
-                <div className="card" key={index}>
+                <div
+                  className="card"
+                  key={id}
+                  onClick={() => {
+                    navigate(`/bloginfo/${id}`);
+                  }}
+                >
                   {/* Thumbnail */}
                   <div className="post-thumbnail">
                     <img src={thumbnail} alt={"Blog - Image"} />
                   </div>
 
                   {/* Details */}
-                  <div
-                    className="post-details"
-                    onClick={() => {
-                      navigate(`/bloginfo/:id${id}`);
-                    }}
-                  >
+                  <div className="post-details">
                     {/* Date */}
                     <p>{date}</p>
                     {/* Title */}
