@@ -21,7 +21,7 @@ const MyState = (props) => {
         });
 
         setGetAllBlog(blogArray);
-        console.log(productsArray);
+        console.log(blogArray);
         setLoading(false);
       });
       return () => data;

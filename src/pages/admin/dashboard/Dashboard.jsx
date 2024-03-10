@@ -79,10 +79,9 @@ const Dashboard = () => {
                         <td>{index + 1}.</td>
                         <td>
                           <div className="thumbnail">
-                            <img
-                              src={thumbnail}
-                              alt="Into the wild movie - quote"
-                            />
+                            {thumbnail && (
+                              <img src={item.thumbnail} alt={title} />
+                            )}
                           </div>
                         </td>
                         <td>{title}</td>

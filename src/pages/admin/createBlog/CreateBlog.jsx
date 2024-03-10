@@ -11,14 +11,23 @@ import { fireDb, storage } from "../../../firebase/FirebaseConfig";
 const CreateBlog = () => {
   const [thumbnailPreview, setThumbnailPreview] = useState("");
 
+  // const handleFileChange = (e) => {
+  //   const file = e.target.files[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       setThumbnailPreview(reader.result);
+  //       setBlogs({ ...blogs, thumbnail: reader.result });
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setThumbnailPreview(reader.result);
-      };
-      reader.readAsDataURL(file);
+      setThumbnailPreview(URL.createObjectURL(file));
+      setBlogs({ ...blogs, thumbnail: file });
     }
   };
 
@@ -27,6 +36,7 @@ const CreateBlog = () => {
   // Create Blog
   const [blogs, setBlogs] = useState({
     title: "",
+    content: "",
     description: "",
     time: Timestamp.now(),
   });
@@ -35,6 +45,7 @@ const CreateBlog = () => {
   const addPost = async () => {
     if (
       blogs.title === "" ||
+      blogs.content === "" ||
       blogs.description === "" ||
       blogs.thumbnail === ""
     ) {
@@ -50,7 +61,10 @@ const CreateBlog = () => {
       return;
     }
 
-    const imageRef = ref(storage, `blogimage/${blogs.title}.jpg`);
+    const imageRef = ref(
+      storage,
+      `blogimage/${blogs.title}.${blogs.thumbnail.type.split("/")[1]}`
+    );
     uploadBytes(imageRef, blogs.thumbnail).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         const productRef = collection(fireDb, "blogPost");
