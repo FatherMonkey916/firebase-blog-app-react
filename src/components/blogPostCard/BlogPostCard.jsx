@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "./BlogPostCard.css";
 import { myContext } from "../../context/data/myContext";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const BlogPostCard = () => {
   const context = useContext(myContext);
@@ -51,7 +52,9 @@ const BlogPostCard = () => {
       </div>
       {/* See More Button */}
       <div className="see-more-btn">
-        <button>See More</button>
+        <Link to={"/allblogs"}>
+          <button>See More</button>
+        </Link>
       </div>
     </div>
   );
