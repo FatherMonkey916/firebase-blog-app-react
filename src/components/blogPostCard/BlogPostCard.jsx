@@ -21,36 +21,28 @@ const BlogPostCard = () => {
               console.log(item);
               const { thumbnail, date, title, description, id } = item;
               return (
-                <>
-                  <div
-                    className="card"
-                    key={id}
-                    onClick={() => {
-                      navigate(`/bloginfo/${id}`);
-                    }}
-                  >
-                    {/* Thumbnail */}
-                    <div className="post-thumbnail">
-                      <img src={thumbnail} alt={"Blog - Image"} />
-                    </div>
+                <div
+                  className="card"
+                  key={id}
+                  onClick={() => {
+                    navigate(`/bloginfo/${id}`);
+                  }}
+                >
+                  {/* Thumbnail */}
+                  <div className="post-thumbnail">
+                    <img src={thumbnail} alt={"Blog - Image"} />
+                  </div>
 
-                    {/* Details */}
-                    <div className="post-details">
-                      {/* Date */}
-                      <p>{date}</p>
-                      {/* Title */}
-                      <h3>{title}</h3>
-                      {/* Description */}
-                      <p>{description}</p>
-                    </div>
+                  {/* Details */}
+                  <div className="post-details">
+                    {/* Date */}
+                    <p>{date}</p>
+                    {/* Title */}
+                    <h3>{title}</h3>
+                    {/* Description */}
+                    <p>{description}</p>
                   </div>
-                  {/* See More Button */}
-                  <div className="see-more-btn">
-                    <Link to={"/allblogs"}>
-                      <button>See More</button>
-                    </Link>
-                  </div>
-                </>
+                </div>
               );
             })}{" "}
           </>
@@ -61,6 +53,12 @@ const BlogPostCard = () => {
             <span>Please add some blog</span>
           </h1>
         )}
+      </div>
+      {/* See More Button */}
+      <div className="see-more-btn">
+        <Link to={"/allblogs"}>
+          <button>See More</button>
+        </Link>
       </div>
     </div>
   );
