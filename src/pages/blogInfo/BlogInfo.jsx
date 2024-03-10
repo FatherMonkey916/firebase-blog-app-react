@@ -43,7 +43,7 @@ const BlogInfo = () => {
   return (
     <>
       <Navbar />
-      <div className="blog-info-container">
+      <div className="blog-info">
         <div className="blog-info-container">
           {loading ? (
             <Loader />
@@ -51,7 +51,9 @@ const BlogInfo = () => {
             <div className="custom-card">
               {/* Thumbnail */}
               <div className="custom-post-thumbnail">
-                <img src={getBlog.thumbnail} alt={getBlog.title} />
+                <div className="thumbnail-img">
+                  <img src={getBlog.thumbnail} alt={getBlog.title} />
+                </div>
               </div>
 
               {/* Details */}
@@ -66,7 +68,9 @@ const BlogInfo = () => {
                 {/* Date and Logo */}
                 <div className="date-logo">
                   {/* Date */}
-                  <p>{getBlog.date}</p>
+                  <div className="custom-date">
+                    <p>{getBlog.date}</p>
+                  </div>
                   {/* Logo */}
                   <div className="custom-logo">
                     <img src={Logo} alt="Logo" />
