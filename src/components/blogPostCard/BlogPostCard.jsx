@@ -31,6 +31,9 @@ const BlogPostCard = () => {
                   {/* Thumbnail */}
                   <div className="post-thumbnail">
                     <img src={thumbnail} alt={"Blog - Image"} />
+                    <div className="hover-effect">
+                      <p>Click to View Full Description</p>
+                    </div>
                   </div>
 
                   {/* Details */}
