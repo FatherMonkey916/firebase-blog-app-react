@@ -100,7 +100,7 @@ const CreateBlog = () => {
           </div>
           <h4 className="title">Create blog</h4>
         </div>
-        <div className="content">
+        <div className="create-blog-content">
           {thumbnailPreview && (
             <img
               className="thumbnail-preview"
