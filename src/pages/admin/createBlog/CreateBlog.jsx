@@ -36,7 +36,7 @@ const CreateBlog = () => {
   // Create Blog
   const [blogs, setBlogs] = useState({
     title: "",
-    content: "",
+    category: "",
     description: "",
     time: Timestamp.now(),
   });
@@ -45,7 +45,7 @@ const CreateBlog = () => {
   const addPost = async () => {
     if (
       blogs.title === "" ||
-      blogs.content === "" ||
+      blogs.category === "" ||
       blogs.description === "" ||
       blogs.thumbnail === ""
     ) {
@@ -117,6 +117,7 @@ const CreateBlog = () => {
               onChange={handleFileChange}
             />
           </label>
+          {/* Title */}
           <input
             type="text"
             className="title-input"
@@ -124,6 +125,15 @@ const CreateBlog = () => {
             value={blogs.title}
             onChange={(e) => setBlogs({ ...blogs, title: e.target.value })}
           />
+          {/* Category */}
+          <input
+            type="text"
+            className="category-input"
+            placeholder="Enter Your category"
+            value={blogs.category}
+            onChange={(e) => setBlogs({ ...blogs, category: e.target.value })}
+          />
+          {/* Description */}
           <textarea
             className="description-input"
             rows="6"
@@ -133,6 +143,7 @@ const CreateBlog = () => {
               setBlogs({ ...blogs, description: e.target.value })
             }
           />
+          {/* Submit */}
           <button onClick={addPost} className="submit-button">
             Create Blog
           </button>

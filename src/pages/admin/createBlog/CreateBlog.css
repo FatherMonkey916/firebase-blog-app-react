@@ -40,15 +40,28 @@
 }
 
 .content {
+  width: 600px;
+  height: auto;
   margin-top: 20px;
 }
 
 .thumbnail-preview {
-  width: 100%;
-  max-width: 300px;
-  height: auto;
+  width: 200px;
+  height: 200px;
   border-radius: 8px;
   margin-bottom: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  /* position: relative; */
+}
+
+.thumbnail-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .thumbnail-input {
@@ -102,4 +115,19 @@ textarea {
 
 .submit-button:hover {
   background-color: #e7e5e5;
+}
+
+/* Media Query */
+@media (max-width: 695px) {
+
+  .content {
+    width: 300px;
+  }
+}
+
+@media (max-width: 330px) {
+
+  .content {
+    width: 250px;
+  }
 }
