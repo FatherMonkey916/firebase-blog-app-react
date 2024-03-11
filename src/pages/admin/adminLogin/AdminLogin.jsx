@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AdminLogin.css";
 import { useNavigate } from "react-router";
 import toast from "react-hot-toast";
@@ -10,6 +10,19 @@ const AdminLogin = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Check if the user is already logged in
+  useEffect(() => {
+    const checkLoggedIn = () => {
+      const admin = JSON.parse(localStorage.getItem("admin"));
+      if (admin) {
+        setIsLoggedIn(true);
+      }
+    };
+
+    checkLoggedIn();
+  }, []);
 
   //* Login Function
   const login = async (e) => {
@@ -22,12 +35,18 @@ const AdminLogin = () => {
       const result = await signInWithEmailAndPassword(auth, email, password);
       toast.success("Login Success");
       localStorage.setItem("admin", JSON.stringify(result));
-      navigate("/dashboard");
+      navigate("/");
     } catch (error) {
       toast.error("Login Failed");
       console.log(error);
     }
   };
+
+  // Redirect if already logged in
+  if (isLoggedIn) {
+    navigate("/");
+    return null; // Render nothing
+  }
 
   return (
     <div className="admin-login-container">
