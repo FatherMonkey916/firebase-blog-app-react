@@ -12,8 +12,8 @@ const BlogPostCard = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="blog-post-card">
-      <div className="post-cards">
+    <div className="blog-post-card-home">
+      <div className="post-cards-home">
         {/* Card */}
         {getAllBlog && getAllBlog.length > 0 ? (
           <>
@@ -22,14 +22,14 @@ const BlogPostCard = () => {
               const { thumbnail, date, title, description, id } = item;
               return (
                 <div
-                  className="card"
+                  className="card-home"
                   key={id}
                   onClick={() => {
                     navigate(`/bloginfo/${id}`);
                   }}
                 >
                   {/* Thumbnail */}
-                  <div className="post-thumbnail">
+                  <div className="post-thumbnail-home">
                     <img src={thumbnail} alt={"Blog - Image"} />
                     <div className="hover-effect">
                       <p>Click to View Full Description</p>
@@ -37,7 +37,7 @@ const BlogPostCard = () => {
                   </div>
 
                   {/* Details */}
-                  <div className="post-details">
+                  <div className="post-details-home">
                     {/* Date */}
                     <p>{date}</p>
                     {/* Title */}

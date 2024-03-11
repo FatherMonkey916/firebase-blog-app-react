@@ -1,13 +1,14 @@
-.blog-post-card {
+.blog-post-card-home {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 20px;
+  /* max-width: 100%; */
   min-height: 100vh;
 }
 
-.post-cards {
+.post-cards-home {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -16,7 +17,7 @@
   margin: 10px auto;
 }
 
-.card {
+.card-home {
   background-color: #f9f9f9;
   border: 2px solid #e7e5e5;
   border-radius: 8px;
@@ -26,7 +27,7 @@
   cursor: pointer;
 }
 
-.post-thumbnail {
+.post-thumbnail-home {
   width: 350px;
   height: 250px;
   margin: 0 auto;
@@ -37,7 +38,7 @@
   position: relative;
 }
 
-.post-thumbnail img {
+.post-thumbnail-home img {
   display: block;
   width: 100%;
   height: 100%;
@@ -69,11 +70,11 @@
   color: #b0adad;
 }
 
-.post-details {
+.post-details-home {
   padding: 20px;
 }
 
-.post-details p {
+.post-details-home p {
   margin: 0;
   max-width: 100%;
   font-size: 14px;
@@ -82,14 +83,14 @@
   white-space: nowrap;
 }
 
-.post-details p:nth-child(1) {
+.post-details-home p:nth-child(1) {
   display: inline;
   padding: 2px 8px;
   background-color: #e7e5e5;
   border-radius: 4px;
 }
 
-.post-details h3 {
+.post-details-home h3 {
   margin-top: 10px;
   margin-bottom: 15px;
   overflow: hidden;
@@ -123,11 +124,11 @@ h1 {
 
 @media (max-width: 480px) {
 
-  .card {
+  .card-home {
     width: 300px;
   }
 
-  .post-thumbnail {
+  .post-thumbnail-home {
     height: 200px;
   }
 
