@@ -12,6 +12,7 @@ import BlogInfo from "./pages/blogInfo/BlogInfo";
 import AdminLogin from "./pages/admin/adminLogin/AdminLogin";
 import Dashboard from "./pages/admin/dashboard/Dashboard";
 import CreateBlog from "./pages/admin/createBlog/CreateBlog";
+import UpdateBlog from "./pages/admin/updateBlog/UpdateBlog";
 import { Toaster } from "react-hot-toast";
 
 const App = () => {
@@ -36,6 +37,14 @@ const App = () => {
             element={
               <ProtectedRouteForAdmin>
                 <CreateBlog />
+              </ProtectedRouteForAdmin>
+            }
+          />
+          <Route
+            path="/updateblog"
+            element={
+              <ProtectedRouteForAdmin>
+                <UpdateBlog />
               </ProtectedRouteForAdmin>
             }
           />
