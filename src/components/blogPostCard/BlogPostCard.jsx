@@ -35,7 +35,8 @@ const BlogPostCard = () => {
               <>
                 {getAllBlog.map((item, index) => {
                   console.log(item);
-                  const { thumbnail, date, title, description, id } = item;
+                  const { thumbnail, date, title, description, category, id } =
+                    item;
                   return (
                     <div
                       className="card-home"
@@ -48,7 +49,7 @@ const BlogPostCard = () => {
                       <div className="post-thumbnail-home">
                         <img src={thumbnail} alt={"Blog - Image"} />
                         <div className="hover-effect">
-                          <p>Click to View Full Description</p>
+                          <p>{category}</p>
                         </div>
                       </div>
 
