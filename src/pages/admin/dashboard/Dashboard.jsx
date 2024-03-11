@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import "./Dashboard.css";
 import Navbar from "../../../components/navbar/Navbar";
+import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { myContext } from "../../../context/data/myContext";
 
@@ -15,6 +16,7 @@ const Dashboard = () => {
   const logout = () => {
     localStorage.clear("admin");
     navigate("/");
+    toast.success("Successfully logged out");
   };
 
   return (
