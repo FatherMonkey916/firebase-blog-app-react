@@ -23,7 +23,29 @@ This is a blog application built using React, Vite, JavaScript, CSS, HTML, and F
 
 ## Screenshot
 
-![Screenshot](path/to/your/screenshot.png)
+### Before Login
+
+1. Home
+
+![Home](./src/assets/screenshots/screencapture-home-page-before-login.png)
+
+2. Blogs
+
+![Blogs](./src/assets/screenshots/screencapture-all-blogs.png)
+
+3. BlogInfo
+
+![BlogInfo](./src/assets/screenshots/screencapture-blog-info.png)
+
+### After Login
+
+4. Home
+
+![Home After Login](./src/assets/screenshots/screencapture-home-page-after-login.png)
+
+5. Dashboard
+
+![Dashboard](./src/assets/screenshots/screencapture-dashboard.png)
 
 ## Demo
 
