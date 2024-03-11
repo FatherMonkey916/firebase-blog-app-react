@@ -27,8 +27,9 @@ const UpdateBlog = () => {
       const docSnap = await getDoc(blogRef);
       if (docSnap.exists()) {
         const data = docSnap.data();
+        const thumbnail = data.thumbnail || "";
         setBlogs(data);
-        setThumbnailPreview(data.thumbnail);
+        setThumbnailPreview(thumbnail);
       } else {
         console.log("No such document!");
       }
@@ -64,25 +65,45 @@ const UpdateBlog = () => {
     // Upload image
     const imageRef = ref(
       storage,
-      `blogimage/${blogs.title}.${blogs.thumbnail.type.split("/")[1]}`
+      `blogimage/${blogs.title}.${(blogs.thumbnail.type || "").split("/")[1]}`
+      // `blogimage/${blogs.title}.${blogs.thumbnail.type.split("/")[1]}`
     );
-    uploadBytes(imageRef, blogs.thumbnail).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then((url) => {
-        // Update document
-        const blogRef = doc(fireDb, "blogPost", id);
-        updateDoc(blogRef, {
-          ...blogs,
-          thumbnail: url,
-        })
-          .then(() => {
-            navigate("/dashboard");
-            toast.success("Post Updated Successfully");
+
+    // Check if blogs.thumbnail exists before accessing its properties
+    if (!blogs.thumbnail || !blogs.thumbnail.type) {
+      toast.error(
+        "Thumbnail file is invalid - Do reselect the same image or else change the image"
+      );
+      return;
+    }
+
+    // Show a toast notification indicating that the update is in progress
+    const updatingToast = toast.loading("Updating Blog...");
+
+    uploadBytes(imageRef, blogs.thumbnail)
+      .then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((url) => {
+          // Update document
+          const blogRef = doc(fireDb, "blogPost", id);
+          updateDoc(blogRef, {
+            ...blogs,
+            thumbnail: url,
           })
-          .catch((error) => {
-            toast.error("Error updating post: ", error);
-          });
+            .then(() => {
+              toast.dismiss(updatingToast);
+              navigate("/dashboard");
+              toast.success("Blog Updated Successfully");
+            })
+            .catch((error) => {
+              toast.dismiss(updatingToast);
+              toast.error("Error updating Blog: ", error);
+            });
+        });
+      })
+      .catch((error) => {
+        toast.dismiss(updatingToast); // Dismiss the updating toast on error
+        toast.error("Error updating Blog: ", error);
       });
-    });
   };
 
   return (

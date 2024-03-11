@@ -4,11 +4,13 @@ import Navbar from "../../../components/navbar/Navbar";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { myContext } from "../../../context/data/myContext";
+import { MdDeleteOutline } from "react-icons/md";
+import { MdOutlineEdit } from "react-icons/md";
 
 const Dashboard = () => {
   const context = useContext(myContext);
   const { getAllBlog, deleteBlogs } = context;
-  console.log(getAllBlog);
+  // console.log(getAllBlog);
 
   const navigate = useNavigate();
 
@@ -37,7 +39,7 @@ const Dashboard = () => {
           <div className="right">
             {/* User Details */}
             <div className="user-info">
-              <h2>John Doe</h2>
+              <h2>Arun Kumar R</h2>
               <p>
                 Position: <span>Web Developer</span>
               </p>
@@ -74,7 +76,7 @@ const Dashboard = () => {
               <tbody>
                 {getAllBlog.length > 0 ? (
                   getAllBlog.map((item, index) => {
-                    console.log(item);
+                    // console.log(item);
                     const { thumbnail, date, title, description, id } = item;
                     return (
                       <tr key={index}>
@@ -90,8 +92,20 @@ const Dashboard = () => {
                         <td>{description}</td>
                         <td>{date}</td>
                         <td>
+                          {/* Edit */}
+                          <Link
+                            to={{
+                              pathname: `/updateblog/${id}`,
+                              state: { blogData: item },
+                            }}
+                          >
+                            <button>
+                              <MdOutlineEdit />
+                            </button>
+                          </Link>
+                          {/* Delete */}
                           <button onClick={() => deleteBlogs(id)}>
-                            Delete
+                            <MdDeleteOutline />
                           </button>
                         </td>
                       </tr>

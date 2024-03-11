@@ -41,7 +41,7 @@ const App = () => {
             }
           />
           <Route
-            path="/updateblog"
+            path="/updateblog/:id"
             element={
               <ProtectedRouteForAdmin>
                 <UpdateBlog />
